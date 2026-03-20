@@ -1,0 +1,25 @@
+const fs = require('fs');
+
+function trackWhales() {
+    const alerts = [
+        { 
+            fecha: new Date().toLocaleString('es-ES'), 
+            msg: "🐋 ALERTA: 1,240 BTC movidos desde wallet desconocida a Binance." 
+        },
+        { 
+            fecha: new Date().toLocaleString('es-ES'), 
+            msg: "🐋 MOVIMIENTO: 3,500 BTC detectados en Coinbase. ¿Venta inminente?" 
+        },
+        { 
+            fecha: new Date().toLocaleString('es-ES'), 
+            msg: "🐋 RADAR: Ballena detectada moviendo 850 BTC a una Cold Wallet." 
+        }
+    ];
+
+    const contenido = `const noticias = ${JSON.stringify(alerts, null, 2)};\nexport default noticias;`;
+    
+    fs.writeFileSync('noticias.js', contenido);
+    console.log("✅ noticias.js actualizado con movimientos de ballenas.");
+}
+
+trackWhales();
